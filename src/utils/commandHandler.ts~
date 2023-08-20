@@ -1,9 +1,0 @@
-import { Message } from "revolt.js"
-
-export function commandHandler(message : Message) {
-  switch(message.content) {
-    case "help" : {
-    }
-  
-  }
-}
