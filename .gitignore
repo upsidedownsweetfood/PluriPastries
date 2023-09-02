@@ -1,7 +1,9 @@
 node_modules
-build
+dist
+package-lock.json
 npm-debug.log
 .nyc
 .env
 .DS_Store
 config.json
+*.db
