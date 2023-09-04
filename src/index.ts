@@ -11,8 +11,11 @@ client.on("ready", async () => {
 });
 
 client.on("messageCreate", async (message: Message) => {
-    if (message.author.bot) {}
-    else {
+  try{if (!message.author) await client.users.fetch(message.authorId)}
+  catch(e){console.log(e)}
+  
+  if (message.author?.bot) {}
+  else {
       if (message.content.startsWith(config.prefix)) {
 	commandHandler(message, config.prefix);
       }
