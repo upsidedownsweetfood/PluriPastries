@@ -2,7 +2,7 @@ import { Client, Message } from "revolt.js";
 import { commandHandler } from "./utils/commandHandler"
 import { nonCommandHandler } from "./utils/nonCommandHandler"
 import config from "../config.json"
-const client : Client = new Client();
+const client : Client = new Client({ eagerFetching: false });
 
 
 client.on("ready", async () => {
