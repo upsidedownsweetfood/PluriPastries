@@ -11,7 +11,7 @@ client.on("ready", async () => {
 });
 
 client.on("messageCreate", async (message: Message) => {
-  try{if (!message.author)} catch(e) { await client.users.fetch(message.authorId) } 
+  try{if (!message.author){}} catch(e) { await client.users.fetch(message.authorId) } 
 
   if (message.author?.bot) {}
   else {
