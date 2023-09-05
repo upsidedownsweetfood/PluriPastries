@@ -29,7 +29,7 @@ export async function nonCommandHandler(message : Message){
 	await message.channel.sendMessage({
 	  content: actualContent,
 	  masquerade: {
-	    name: alter.name,
+	    name: alter.name + " ( " + message.author.id + " )",
 	    avatar: alter.profile_pic_url,
 	    color: alter.color
 	  },

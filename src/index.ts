@@ -16,13 +16,13 @@ client.on("messageCreate", async (message: Message) => {
   
   if (message.author?.bot) {}
   else {
-      if (message?.content.startsWith(config.prefix)) {
-	commandHandler(message, config.prefix);
-      }
-      else {
-	nonCommandHandler(message);
-      }
+    if (message?.content.startsWith(config.prefix)) {
+      commandHandler(message, config.prefix);
     }
+    else {
+      nonCommandHandler(message);
+    }
+  }
 });
 
 client.loginBot(config.botKey);
