@@ -5,5 +5,6 @@ export function returnHelpText() {
     "The currently available commands are : \n" +
     "- list | allows you to see your currently available alters.\n" +
     "- create <'name of the alter'> <'your alter s tag'>| Allows you to create your Alters\n" +
-    "- avatar <'Alter's name'> <'picture url'> | Allows you to edit your alter's profile picture"
+    "- avatar <'Alter's name'> <'picture url'> | Allows you to edit your alter's profile picture" +
+    "- color <'Alter's name'> <color hex> | Allows you to change the color of your alter ( may be integrated with the website )"
 }
