@@ -29,7 +29,7 @@ export async function nonCommandHandler(message : Message){
 	await message.channel.sendMessage({
 	  content: actualContent,
 	  masquerade: {
-	    name: alter.name + " ( " + message.author.member.displayName + " )",
+	    name: alter.name ,
 	    avatar: alter.profile_pic_url,
 	    color: alter.color
 	  },
@@ -38,6 +38,7 @@ export async function nonCommandHandler(message : Message){
 	await message.delete();
       }
       catch(e){
+	console.log(e)
 	await message.channel.sendMessage("Error: PluralCake requires at least these permissions: \n- Masquerade permissions. \n- Message editing permissions.")
       }
     }
