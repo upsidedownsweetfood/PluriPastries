@@ -4,6 +4,7 @@ import { listAlters } from "../commands/listAlters"
 import { createAlter } from "../commands/createAlter"
 import { deleteAlter } from "../commands/deleteAlter"
 import { avatarAlterChange } from "../commands/avatarAlterChange"
+import { colorAlterChange } from "../commands/colorAlterChange"
 import { split } from "shlex"
 
 export async function commandHandler(message : Message, prefix : String) {
@@ -34,6 +35,7 @@ export async function commandHandler(message : Message, prefix : String) {
       break
     }
    case "color" : {
+     await message.reply(await colorAlterChange(message.author.id, args));
      break
    }
   }
