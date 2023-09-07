@@ -14,7 +14,7 @@ client.on("messageCreate", async (message: Message) => {
   try{if (!message.author) {await client.users.fetch(message.authorId)} }
   catch(e){console.log(e)}
 
-  try{if (!messafe.content) {await client.messages.fetch(message.id)}}
+  try{if (!message.content) {await client.messages.fetch(message.id)}}
   catch(e){console.log(e)}
   
   if (message === undefined) {return}
