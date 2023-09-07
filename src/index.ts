@@ -13,11 +13,8 @@ client.on("ready", async () => {
 client.on("messageCreate", async (message: Message) => {
   try{if (!message.author) {await client.users.fetch(message.authorId)} }
   catch(e){console.log(e)}
-
-  try{if (!message.content) {await client.messages.fetch(message.id)}}
-  catch(e){console.log(e)}
   
-  if (message === undefined) {return}
+  if (message.content === undefined) {return}
   if (message.author?.bot) {}
   else {
     if (message.content.startsWith(config.prefix)) {
