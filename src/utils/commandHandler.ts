@@ -7,7 +7,7 @@ import { avatarAlterChange } from "../commands/avatarAlterChange"
 import { colorAlterChange } from "../commands/colorAlterChange"
 import { split } from "shlex"
 
-export async function commandHandler(message : Message, prefix : String) {
+export async function commandHandler(message : Message, _prefix : String) {
   let args : string[] = split(message.content);
   args.shift()
   const command = args[0]
