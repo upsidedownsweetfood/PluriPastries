@@ -1,5 +1,6 @@
 import { File } from "revolt.js"
 import { createAlter } from "./createAlter"
+import { avatarAlterChange } from "./avatarAlterChange"
 
 export default async function migrateAlters(author: string, attachments: File[] | undefined, source: String) {
   // source is not utilized for now, it is put as an argument in case the bot evolves further
@@ -21,8 +22,12 @@ export default async function migrateAlters(author: string, attachments: File[] 
     
     tuppers.forEach(async element => {
       let name = element.name
+      let avatar = element.avatar_url
       let brackets = element.brackets[0] + "text" + element.brackets[1]
       const createResult = await createAlter(author, [name, brackets])
+      if ( createResult.code === 0 ) {
+	await avatarAlterChange(author, [name, avatar])
+      }
       let tupperStruct = {tupper: name, message: createResult}
       
       console.log(tupperStruct)
