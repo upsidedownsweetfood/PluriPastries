@@ -5,6 +5,8 @@ import { createAlter } from "../commands/createAlter"
 import { deleteAlter } from "../commands/deleteAlter"
 import { avatarAlterChange } from "../commands/avatarAlterChange"
 import { colorAlterChange } from "../commands/colorAlterChange"
+import migrationCommand from "../commands/migrateAlters"
+
 import { split } from "shlex"
 
 export async function commandHandler(message : Message, _prefix : String) {
@@ -15,7 +17,7 @@ export async function commandHandler(message : Message, _prefix : String) {
 
   switch(command) {
     case "help" : {
-      message.reply(returnHelpText());
+      await message.reply(returnHelpText());
       break;
     }
     case "list" : {
@@ -23,7 +25,8 @@ export async function commandHandler(message : Message, _prefix : String) {
       break;
     }
     case "create" : {
-      await message.reply(await createAlter(message.author.id, args));
+      const commandResponse = await createAlter(message.author.id, args);
+      await message.reply (commandResponse.message)
       break
     }
     case "delete" : {
@@ -34,9 +37,13 @@ export async function commandHandler(message : Message, _prefix : String) {
       await message.reply(await avatarAlterChange(message.author.id, args));
       break
     }
-   case "color" : {
-     await message.reply(await colorAlterChange(message.author.id, args));
-     break
+    case "color" : {
+      await message.reply(await colorAlterChange(message.author.id, args));
+      break
+   }
+   case "tupper" : {
+      await message.reply(await migrationCommand(message.author.id, message.attachments, "placeholder"))
+      break
    }
   }
 }

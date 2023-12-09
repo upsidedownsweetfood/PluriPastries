@@ -11,7 +11,7 @@ client.on("ready", async () => {
 });
 
 client.on("messageCreate", async (message: Message) => {
-  try{if (!message.author) {await client.users.fetch(message.authorId)} }
+  try{ if (!message.author) { await client.users.fetch(message.authorId) } }
   catch(e){console.log(e)}
   
   if (message.content === undefined) {return}

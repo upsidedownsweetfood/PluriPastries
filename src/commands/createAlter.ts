@@ -31,24 +31,24 @@ export async function createAlter(userId: string, args: string[]){
     && !alterNames.includes(args[0])) {
   
       alterRepo.addAlterForUser(model);
-      return "Alter < " + model.name + " > has been succefully created"
+      return {message: "Alter < " + model.name + " > has been succefully created", code: 0}
   
     }
   else {
     if (args.length != 2){
-      return "Error: Insufficent arguments";
+      return {message: "Error: Insufficent arguments", code: 1};
     }
     if (args[1] === "text"){
-      return "Error: Tag may not be only <text>";
+      return {message: "Error: Tag may not be only <text>", code: 2};
     }
     if (!args[1].includes("text")) {
-      return "Error: This command requires a tag that contains <text> in it";
+      return {message: "Error: This command requires a tag that contains <text> in it", code: 3};
     }
     if (alterTags.includes(args[1])) {
-      return "Error: You already have an Alter with that tag"
+      return {message: "Error: You already have an Alter with that tag", code: 4}
     }
     if (alterNames.includes(args[0])) {
-      return "Error: You can only have one Alter with that name"
+      return {message: "Error: You can only have one Alter with that name", code: 5}
     }
   }
 }
