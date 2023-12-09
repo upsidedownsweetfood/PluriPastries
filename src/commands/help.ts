@@ -11,5 +11,5 @@ export function returnHelpText() {
     "- avatar <'Alter's name'> <'picture url'> | Allows you to edit your alter's profile picture\n" +
     "- color <'Alter's name'> <'color hex'> | Allows you to change the color of your alter ( may be integrated with the future website )\n"+
     "### Migrations\n"+
-    "- pluralkit < Json file attached > | Migrates your alters from pluralkit to pluralcake"
+    "- tupper < Json file attached > | Migrates your alters from tupper to pluralcake"
 }
