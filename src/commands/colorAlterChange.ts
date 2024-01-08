@@ -11,7 +11,7 @@ export async function colorAlterChange(userId: string, args: string[]){
 
     let alters: AlterModel[];
     await alterRepo.getAltersByUserId(userId).then( result => alters = result ) // fetching alters from user.
-    if (alters.length == 0) return "This user has no Alters." // checking if returned array is at least not 0, if len 0, then return. 
+    if (alters.length == 0) return "This user has no Members." // checking if returned array is at least not 0, if len 0, then return. 
 
     let alterToEdit: AlterModel;
     alters.forEach( alter => {
@@ -23,7 +23,7 @@ export async function colorAlterChange(userId: string, args: string[]){
     alterToEdit.color = alterColor;
     alterRepo.editAlter(alterToEdit)
     
-    return "The Alter's colour has been changed."
+    return "The Member's colour has been changed."
   }
 
   return "Error: Insufficent Arguments"

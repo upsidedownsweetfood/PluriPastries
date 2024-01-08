@@ -16,9 +16,9 @@ export async function deleteAlter(userId: string, args: string[]) {
     })
   }
   if (success) {
-    return "Alter has been deleted"
+    return "Member has been deleted"
   }
   else {
-    return "Failed to delete Alter"
+    return "Failed to delete Member"
   }
 }

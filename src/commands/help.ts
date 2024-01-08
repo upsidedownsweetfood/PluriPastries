@@ -1,15 +1,15 @@
 export function returnHelpText() {
   return "# Howdy user, welcome to pluralcake\n" +
-    "pluralcake is a bot that allows you to send messages as your Alters, with a custom profile picture, tag and nickname. \n" +
+    "pluralcake is a bot that allows you to send messages as your system's Members, with a custom profile picture, tag and nickname. \n" +
     "It's pretty much a work in progress, and doesn't allow you to edit or delete messages, and to send pictures." +
     "The currently available commands are : \n" +
     "### Alters:\n" +
-    "- list | allows you to see your currently available alters.\n" +
-    "- create <'name of the alter'> <'your alter s tag'>| Allows you to create your Alters\n" +
-    "- delete <'name of the alter'> | Deletes the choosen Alter\n" +
-    "- name <'name of the alter'> | Changes the choosen Alter's name\n" +
-    "- avatar <'Alter's name'> <'picture url'> | Allows you to edit your alter's profile picture\n" +
-    "- color <'Alter's name'> <'color hex'> | Allows you to change the color of your alter ( may be integrated with the future website )\n"+
+    "- list | allows you to see your currently available Members.\n" +
+    "- create <'name of the Member'> <'your Member's tag'>| Allows you to add a Member\n" +
+    "- delete <'name of the Member'> | Deletes the choosen Member\n" +
+    "- name <'name of the Member'> | Changes the choosen Member's name\n" +
+    "- avatar <'Member's name'> <'picture url'> | Allows you to edit your Member's profile picture\n" +
+    "- color <'Member's name'> <'color hex'> | Allows you to change the color of your Member ( may be integrated with the future website )\n"+
     "### Migrations\n"+
-    "- tupper < Json file attached > | Migrates your alters from tupper to pluralcake"
+    "- tupper < Json file attached > | Migrates your Member from tupper"
 }

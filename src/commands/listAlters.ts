@@ -11,6 +11,6 @@ export async function listAlters(userId: string) {
     return tableConstructor(alters)
   }
   else {
-    return "No Alters found for this user"
+    return "No Members found for this user"
   }
 }

@@ -32,7 +32,7 @@ export default async function migrateAlters(author: string, attachments: File[] 
       
       console.log(tupperStruct)
     });
-    return "Migration finished, check your tuppers to confirm"
+    return "Migration finished, check your Members to confirm"
   }
   else {
     return "This is not a valid json file"

@@ -31,7 +31,7 @@ export async function createAlter(userId: string, args: string[]){
     && !alterNames.includes(args[0])) {
   
       alterRepo.addAlterForUser(model);
-      return {message: "Alter < " + model.name + " > has been succefully created", code: 0}
+      return {message: "Member < " + model.name + " > has been succefully created", code: 0}
   
     }
   else {
@@ -45,10 +45,10 @@ export async function createAlter(userId: string, args: string[]){
       return {message: "Error: This command requires a tag that contains <text> in it", code: 3};
     }
     if (alterTags.includes(args[1])) {
-      return {message: "Error: You already have an Alter with that tag", code: 4}
+      return {message: "Error: You already have a Member with that tag", code: 4}
     }
     if (alterNames.includes(args[0])) {
-      return {message: "Error: You can only have one Alter with that name", code: 5}
+      return {message: "Error: You can only have one Member with that name", code: 5}
     }
   }
 }

@@ -18,7 +18,7 @@ export async function avatarAlterChange(userId: string, args: string[]){
 	}
       })
     }
-    return "The profile picture has been changed"
+    return "The profile picture for the Member has been changed"
   }
 
   if (args.length != 2) {
