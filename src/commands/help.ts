@@ -3,7 +3,7 @@ export function returnHelpText() {
     "pluralcake is a bot that allows you to send messages as your system's Members, with a custom profile picture, tag and nickname. \n" +
     "It's pretty much a work in progress, and doesn't allow you to edit or delete messages, and to send pictures." +
     "The currently available commands are : \n" +
-    "### Alters:\n" +
+    "### Members:\n" +
     "- list | allows you to see your currently available Members.\n" +
     "- create <'name of the Member'> <'your Member's tag'>| Allows you to add a Member\n" +
     "- delete <'name of the Member'> | Deletes the choosen Member\n" +
