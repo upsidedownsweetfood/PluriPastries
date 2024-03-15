@@ -1,18 +1,19 @@
-import { AlterRepo } from "../repositories/AlterRepo";
-import { AlterModel } from "models/alterModel"
+import { Database } from "sqlite3";
+import { MemberRepo } from "../repositories/MemberRepo";
+import MemberModel from "models/MemberModel"
 
-export async function createAlter(userId: string, args: string[]){
-  const alterRepo = new AlterRepo();
+async function createMember(userId: string, args: string[], database: Database){
+  const memberRepo = new MemberRepo(database);
 
-  const model: AlterModel = {
+  const model: MemberModel = {
     owner: userId,
     name: args[0],
     prefix: args[1],
     profile_pic_url: "https://tse3.mm.bing.net/th?id=OIP.yte7rRnbCnWi1giriwTOvwHaHa&pid=15.1"
   }
 
-  let userAlters: AlterModel[];
-  await alterRepo.getAltersByUserId(userId).then(result => userAlters = result)
+  let userAlters: MemberModel[];
+  await memberRepo.getAltersByUserId(userId).then(result => userAlters = result)
   
   let alterTags : string[] = [];
   userAlters.forEach( alter => {
@@ -30,7 +31,7 @@ export async function createAlter(userId: string, args: string[]){
     && args[1] != "text"
     && !alterNames.includes(args[0])) {
   
-      alterRepo.addAlterForUser(model);
+      memberRepo.addAlterForUser(model);
       return {message: "Member < " + model.name + " > has been succefully created", code: 0}
   
     }
@@ -52,3 +53,5 @@ export async function createAlter(userId: string, args: string[]){
     }
   }
 }
+
+export default createMember;

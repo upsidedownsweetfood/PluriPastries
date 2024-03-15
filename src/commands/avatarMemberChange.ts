@@ -1,10 +1,11 @@
-import { AlterModel } from "../models/alterModel"
-import { AlterRepo } from "../repositories/AlterRepo"
+import { Database } from "sqlite3";
+import MemberModel from "../models/MemberModel"
+import { MemberRepo } from "../repositories/MemberRepo"
 
-export async function avatarAlterChange(userId: string, args: string[]){
-  const alterRepo = new AlterRepo();
-  let userAlters : AlterModel[] = [];
-  await alterRepo.getAltersByUserId(userId).then( result => userAlters = result )
+export async function avatarMemberChange(userId: string, args: string[], database: Database){
+  const memberRepo = new MemberRepo(database);
+  let userAlters : MemberModel[] = [];
+  await memberRepo.getAltersByUserId(userId).then( result => userAlters = result )
 
   let userAltersNames : string[] = [];
   userAlters.forEach(alter => userAltersNames.push(alter.name));
@@ -14,7 +15,7 @@ export async function avatarAlterChange(userId: string, args: string[]){
       userAlters.forEach( alter => {
 	if (alter.name == args[0]) {
 	  alter.profile_pic_url = args[1];
-	  alterRepo.editAlter(alter)
+	  memberRepo.editAlter(alter)
 	}
       })
     }

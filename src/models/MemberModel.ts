@@ -1,4 +1,4 @@
-export interface AlterModel {
+interface MemberModel {
   id?: number;
   owner: string;
   prefix: string;
@@ -6,3 +6,5 @@ export interface AlterModel {
   profile_pic_url: string;
   color?: string;
 }
+
+export default MemberModel;

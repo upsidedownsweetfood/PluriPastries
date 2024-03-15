@@ -1,8 +1,9 @@
 import { File } from "revolt.js"
-import { createAlter } from "./createAlter"
-import { avatarAlterChange } from "./avatarAlterChange"
+import { Database } from "sqlite3"
+import createMember from "./createMember"
+import { avatarMemberChange } from "./avatarMemberChange"
 
-export default async function migrateAlters(author: string, attachments: File[] | undefined, source: String) {
+export default async function migrateAlters(author: string, attachments: File[] | undefined, source: String, database: Database) {
   // source is not utilized for now, it is put as an argument in case the bot evolves further
   
   let file = attachments[0]
@@ -24,9 +25,9 @@ export default async function migrateAlters(author: string, attachments: File[] 
       let name = element.name
       let avatar = element.avatar_url
       let brackets = element.brackets[0] + "text" + element.brackets[1]
-      const createResult = await createAlter(author, [name, brackets])
+      const createResult = await createMember(author, [name, brackets], database)
       if ( createResult.code === 0 ) {
-	await avatarAlterChange(author, [name, avatar])
+	await avatarMemberChange(author, [name, avatar], database)
       }
       let tupperStruct = {tupper: name, message: createResult}
       
