@@ -1,16 +1,21 @@
 import { Message } from "revolt.js"
-import { Database } from "sqlite3";
+import { Database } from "bun:sqlite";
 import { MemberRepo } from "../repositories/MemberRepo"
 import MemberModel from "../models/MemberModel"
 
 export default async function sendAsMember(message: Message, database: Database) {
-  const alterRepo: MemberRepo = new MemberRepo(database);
-  let alters: MemberModel[];
-  await alterRepo.getAltersByUserId(message.author.id).then(result => alters = result);
+  const memberRepo: MemberRepo = new MemberRepo(database);
+  let members: MemberModel[];
+  await memberRepo.getAltersByUserId(message.author.id).then(result => members = result);
+  if (members === undefined) {return}
 
-  alters.forEach( async alter => {
+  members.forEach( async alter => {
     const pre_prefix = alter.prefix.split("text");
-    if (message.content.startsWith(pre_prefix[0]) && message.content.endsWith(pre_prefix[1])) {
+    if (
+      message.content.startsWith(pre_prefix[0])
+      && message.content.endsWith(pre_prefix[1]
+      && message.content.length > 1)
+    ) {
       let actualContent: string = message.content;
       actualContent = actualContent.slice(pre_prefix[0].length, actualContent.length - pre_prefix[1].length)
 

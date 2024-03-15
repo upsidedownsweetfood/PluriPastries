@@ -1,15 +1,16 @@
-import { MemberRepo } from "repositories/MemberRepo";
-import { Database } from "sqlite3";
+import UserRepo from "repositories/UserRepo";
+import { Database } from "bun:sqlite";
 
-async function checkAutoProxy
+function checkAutoProxy
 (
-  userId: number,
+  userId: string,
   database: Database
-): Promise<Boolean>
+)
 {
-  const repo = new MemberRepo(database)
-
-  return true
+  const repo = new UserRepo(database)
+  const user_id = repo.getIdByRevoltId(userId)
+  const is_enabled = repo.isProxyEnabled(user_id)
+  return is_enabled
 }
 
 export default checkAutoProxy;

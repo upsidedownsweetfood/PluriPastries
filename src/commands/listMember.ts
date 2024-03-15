@@ -1,6 +1,6 @@
 import { MemberRepo } from "../repositories/MemberRepo"
 import { tableConstructor } from '../utils/tableConstructor'
-import { Database } from "sqlite3";
+import { Database } from "bun:sqlite";
 import MemberModel from "../models/MemberModel";
 
 async function listMember(userId: string, database: Database) {

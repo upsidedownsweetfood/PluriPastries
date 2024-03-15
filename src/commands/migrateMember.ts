@@ -1,5 +1,5 @@
 import { File } from "revolt.js"
-import { Database } from "sqlite3"
+import { Database } from "bun:sqlite"
 import createMember from "./createMember"
 import { avatarMemberChange } from "./avatarMemberChange"
 

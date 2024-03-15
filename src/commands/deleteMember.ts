@@ -1,6 +1,6 @@
 import { MemberRepo } from "../repositories/MemberRepo"
 import MemberModel from "../models/MemberModel" 
-import { Database } from "sqlite3";
+import { Database } from "bun:sqlite";
 
 export async function deleteMember(userId: string, args: string[], database: Database) {
   const memberRepo = new MemberRepo(database);

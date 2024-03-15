@@ -1,4 +1,4 @@
-import { Database } from "sqlite3";
+import { Database } from "bun:sqlite";
 
 function dbInit(database: Database){
   database.run("CREATE TABLE IF NOT EXISTS members (id INTEGER PRIMARY KEY AUTOINCREMENT, owner TEXT, prefix TEXT, name TEXT, profile_pic_url TEXT, color TEXT)");

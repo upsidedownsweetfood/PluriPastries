@@ -1,5 +1,5 @@
 import { Message } from "revolt.js"
-import { Database } from "sqlite3"
+import { Database } from "bun:sqlite"
 import { split } from "shlex"
 
 import { returnHelpText } from "../commands/help"

@@ -9,13 +9,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/sqlite3": "^3.1.8",
+    "bun-types": "^1.0.31",
     "typescript": "^5.1.3",
     "typescript-language-server": "^3.3.2"
   },
   "dependencies": {
     "revolt.js": "^7.0.0-beta.9",
-    "shlex": "^2.1.2",
-    "sqlite3": "^5.1.6"
+    "shlex": "^2.1.2"
   }
 }

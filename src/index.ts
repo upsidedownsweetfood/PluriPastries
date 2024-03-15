@@ -1,7 +1,7 @@
 import { Client, Message } from "revolt.js";
 import { commandHandler } from "./utils/commandHandler"
 import { nonCommandHandler } from "./utils/nonCommandHandler"
-import { Database } from "sqlite3";
+import { Database } from "bun:sqlite";
 import config from "../config.json"
 import dbInit from "utils/dbInit";
 

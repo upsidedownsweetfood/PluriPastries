@@ -1,4 +1,4 @@
-import { Database } from "sqlite3";
+import { Database } from "bun:sqlite";
 import MemberModel from "../models/MemberModel"
 import { MemberRepo } from "../repositories/MemberRepo"
 

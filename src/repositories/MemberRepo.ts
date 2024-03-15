@@ -1,4 +1,4 @@
-import { Database } from 'sqlite3';
+import { Database } from 'bun:sqlite';
 import MemberModel from '../models/MemberModel';
 
 export class MemberRepo {
@@ -9,30 +9,33 @@ export class MemberRepo {
   }
 
   async getAltersByUserId(userId : string) : Promise<MemberModel[]> {
-    const query : string = 'SELECT * FROM members WHERE members.owner = "' + userId + '"'
+    const query = this.db.query("SELECT * FROM members WHERE members.owner=?")
 
-    let result: MemberModel[] = await new Promise((resolve, reject) => {
-      this.db.all(query, (err, row: MemberModel[]) => {
-	if (err) { return reject(err)}
-	else { return resolve(row) }
-      })
+    let result: MemberModel[] = query.all(userId).map( (row: any) => {
+      const mapped_row: MemberModel = {
+	id: row.id,
+	"name": row.name,
+      	"prefix": row.prefix,
+	"owner": row.owner,
+	"profile_pic_url": row.profile_pic_url
+      }
+      return mapped_row
     })
-
     return result
   }
 
   addAlterForUser(alter: MemberModel){
-    this.db.run("INSERT INTO members (owner, prefix, name, profile_pic_url, color) VALUES(?, ?, ?, ?, ?)",
-      [alter.owner, alter.prefix, alter.name, alter.profile_pic_url])
+    this.db.query("INSERT INTO members (owner, prefix, name, profile_pic_url) VALUES(?, ?, ?, ?)")
+      .run(alter.owner, alter.prefix, alter.name, alter.profile_pic_url)
   }
 
   editAlter(alter: MemberModel){
-    this.db.run("UPDATE members SET owner=?, prefix=?, name=?, profile_pic_url=?, color=? WHERE members.id=?",
-      [alter.owner, alter.prefix, alter.name, alter.profile_pic_url, alter.color, alter.id])
+    this.db.query("UPDATE members SET owner=?, prefix=?, name=?, profile_pic_url=?, color=? WHERE members.id=?")
+      .run(alter.owner, alter.prefix, alter.name, alter.profile_pic_url, alter.color, alter.id)
   }
 
   delete(alterId: number) {
-    this.db.run("DELETE FROM members WHERE members.id=?", [alterId])
+    this.db.query("DELETE FROM members WHERE members.id=?").run(alterId)
   }
   
 }
