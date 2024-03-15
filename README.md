@@ -1,5 +1,5 @@
-# MultiPastries
-MultiPastries is a pluralkit alternative for the revolt chat platform.
+# PluriPastries
+PluriPastries is a pluralkit alternative for the revolt chat platform.
 It supports creating members and sending messages as one of the members.
 
 ## How to host the bot yourself.
