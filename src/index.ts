@@ -3,9 +3,11 @@ import { commandHandler } from "./utils/commandHandler"
 import { nonCommandHandler } from "./utils/nonCommandHandler"
 import { Database } from "sqlite3";
 import config from "../config.json"
+import dbInit from "utils/dbInit";
 
 const client : Client = new Client({ eagerFetching: false });
 const db = new Database(config.databaseName);
+dbInit(db);
 
 client.on("ready", async () => {
   console.info(`logged in as ${client.user.username}!`)
