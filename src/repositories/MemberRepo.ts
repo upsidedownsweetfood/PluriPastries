@@ -27,12 +27,12 @@ export class MemberRepo {
   }
 
   editAlter(alter: MemberModel){
-    this.db.run("UPDATE members SET owner=?, prefix=?, name=?, profile_pic_url=?, color=? WHERE members.id ='" + alter.id + "'",
-      [alter.owner, alter.prefix, alter.name, alter.profile_pic_url, alter.color])
+    this.db.run("UPDATE members SET owner=?, prefix=?, name=?, profile_pic_url=?, color=? WHERE members.id=?",
+      [alter.owner, alter.prefix, alter.name, alter.profile_pic_url, alter.color, alter.id])
   }
 
   delete(alterId: number) {
-    this.db.run("DELETE FROM members WHERE members.id='"+ alterId + "'")
+    this.db.run("DELETE FROM members WHERE members.id=?", [alterId])
   }
   
 }
