@@ -7,14 +7,14 @@ export default async function sendAsMember(message: Message, database: Database)
   const memberRepo: MemberRepo = new MemberRepo(database);
   let members: MemberModel[];
   await memberRepo.getAltersByUserId(message.author.id).then(result => members = result);
-
+  
   members.forEach( async alter => {
     const pre_prefix = alter.prefix.split("text");
     if (
       message.content.startsWith(pre_prefix[0])
-      && message.content.endsWith(pre_prefix[1]
-      && message.content.length > 1)
-    ) {
+	&& message.content.endsWith(pre_prefix[1])
+	&& message.content.length > 1
+    ){
       let actualContent: string = message.content;
       actualContent = actualContent.slice(pre_prefix[0].length, actualContent.length - pre_prefix[1].length)
 
