@@ -30,7 +30,8 @@ async function sendAsAutoProxyMember(revolt_uid: string, message: Message, datab
     await message.channel.sendMessage({
       content: message.content,
       masquerade: {
-	name: member_to_proxy_as.name ,
+	name: member_to_proxy_as.name,
+	avatar: member_to_proxy_as.profile_pic_url
       },
       replies: replies
     })
