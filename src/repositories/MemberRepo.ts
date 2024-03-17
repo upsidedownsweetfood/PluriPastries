@@ -8,12 +8,51 @@ export class MemberRepo {
     this.db = database_instance;
   }
 
-  async getAltersByUserId(userId : string) : Promise<MemberModel[]> {
+  getById(member_id: number): MemberModel {
+    const row: any = this.db.query("SELECT * FROM members WHERE members.id=?")
+      .get(member_id)
+
+    const mapped_row: MemberModel = {
+      "id": row.id,
+      "name": row.name,
+      "prefix": row.prefix,
+      "owner": row.owner,
+      "profile_pic_url": row.profile_pic_url
+    }
+
+    return mapped_row   
+  }
+  
+  getByName(name: string, user_id: string) {
+    if (name == null || user_id == null) {return null}
+
+    const query = this.db.query(`
+    SELECT *
+    FROM members
+    WHERE members.name=?
+    AND members.owner=?
+    `)
+
+    const row: any = query.get(name, user_id)
+    if (row == null) {return null}
+    
+    const mapped_row: MemberModel = {
+      "id": row.id,
+      "name": row.name,
+      "prefix": row.prefix,
+      "owner": row.owner,
+      "profile_pic_url": row.profile_pic_url
+    }
+
+    return mapped_row
+  }
+
+  getAltersByUserId(userId : string) : MemberModel[] {
     const query = this.db.query("SELECT * FROM members WHERE members.owner=?")
 
     let result: MemberModel[] = query.all(userId).map( (row: any) => {
       const mapped_row: MemberModel = {
-	id: row.id,
+	"id": row.id,
 	"name": row.name,
       	"prefix": row.prefix,
 	"owner": row.owner,
@@ -37,5 +76,4 @@ export class MemberRepo {
   delete(alterId: number) {
     this.db.query("DELETE FROM members WHERE members.id=?").run(alterId)
   }
-  
 }

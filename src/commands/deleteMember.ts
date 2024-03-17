@@ -7,8 +7,7 @@ export async function deleteMember(userId: string, args: string[], database: Dat
   let success: boolean = false;
   
   if (args.length === 1) {
-    let alters: MemberModel[];
-    await memberRepo.getAltersByUserId(userId).then(result => alters = result )
+    const alters: MemberModel[] = memberRepo.getAltersByUserId(userId)
     alters.forEach(alter => {
       if (alter.name == args[0]) {
 	memberRepo.delete(alter.id)

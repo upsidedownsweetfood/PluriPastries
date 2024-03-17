@@ -10,8 +10,7 @@ async function colorMemberChange(userId: string, args: string[], database: Datab
     const alterName = args[0];
     const alterColor = args[1];
 
-    let alters: MemberModel[];
-    await memberRepo.getAltersByUserId(userId).then( result => alters = result ) // fetching alters from user.
+    const alters: MemberModel[] = memberRepo.getAltersByUserId(userId) // fetching alters from user.
     if (alters.length == 0) return "This user has no Members." // checking if returned array is at least not 0, if len 0, then return. 
 
     let alterToEdit: MemberModel;

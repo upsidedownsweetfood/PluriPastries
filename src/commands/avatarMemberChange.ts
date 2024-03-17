@@ -4,8 +4,7 @@ import { MemberRepo } from "../repositories/MemberRepo"
 
 export async function avatarMemberChange(userId: string, args: string[], database: Database){
   const memberRepo = new MemberRepo(database);
-  let userAlters : MemberModel[] = [];
-  await memberRepo.getAltersByUserId(userId).then( result => userAlters = result )
+  const userAlters : MemberModel[] = memberRepo.getAltersByUserId(userId)
 
   let userAltersNames : string[] = [];
   userAlters.forEach(alter => userAltersNames.push(alter.name));

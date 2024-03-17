@@ -1,8 +1,8 @@
 interface UserModel {
-  id: number,
+  id?: number,
   revolt_id: string,
   autoProxy: boolean,
-  autoProxyMember: number
+  autoProxyMember?: number
 }
 
 export default UserModel;

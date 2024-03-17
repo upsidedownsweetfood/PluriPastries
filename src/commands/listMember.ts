@@ -5,8 +5,7 @@ import MemberModel from "../models/MemberModel";
 
 async function listMember(userId: string, database: Database) {
   const memberRepo = new MemberRepo(database);
-  let alters: MemberModel[];
-  await memberRepo.getAltersByUserId(userId).then(result => { alters = result })
+  const alters: MemberModel[] = memberRepo.getAltersByUserId(userId)
   
   if (alters.length > 0 ) {
     return tableConstructor(alters)

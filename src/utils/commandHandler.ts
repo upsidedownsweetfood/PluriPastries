@@ -9,6 +9,8 @@ import { deleteMember } from "../commands/deleteMember"
 import { avatarMemberChange } from "../commands/avatarMemberChange"
 import colorMemberChange from "../commands/colorMemberChange"
 import migrationCommand from "../commands/migrateMember"
+import toggleAutoProxy from "commands/toggleAutoProxy"
+import setAutoProxy from "commands/setAutoProxy"
 
 
 
@@ -38,6 +40,25 @@ export async function commandHandler(message : Message, db: Database,  _prefix :
     }
     case "avatar" : {
       await message.reply(await avatarMemberChange(message.author.id, args, db));
+      break
+    }
+    case "setAutoProxy": {
+      const status = setAutoProxy(message.author.id, args, db);
+      switch(status) {
+	case 0: {
+	  await message.reply("not enough arguments")
+	  break
+	}
+	case 1: {
+	  message.reply("no member found with that member name")
+	  break
+	}
+      }
+      break
+    }
+    case "toggleAutoProxy": {
+      toggleAutoProxy(message.author.id, db)
+      await message.reply("toggled")
       break
     }
     case "color" : {

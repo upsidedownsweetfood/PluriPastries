@@ -12,8 +12,7 @@ async function createMember(userId: string, args: string[], database: Database){
     profile_pic_url: "https://tse3.mm.bing.net/th?id=OIP.yte7rRnbCnWi1giriwTOvwHaHa&pid=15.1"
   }
 
-  let userAlters: MemberModel[];
-  await memberRepo.getAltersByUserId(userId).then(result => userAlters = result)
+  const userAlters: MemberModel[] = memberRepo.getAltersByUserId(userId)
   
   let alterTags : string[] = [];
   userAlters.forEach( alter => {

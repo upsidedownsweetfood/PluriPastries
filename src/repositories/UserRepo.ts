@@ -9,18 +9,33 @@ class UserRepo {
   }
   
   getById(id) {
-    const row = this.db.run(`
+    const row: any = this.db.query(`
     SELECT *
     FROM users
     WHERE users.id = ?  
-    `, [id])
-
-    return row
+    `).get(id)
+    if (row != null){
+      return row.id
+    }
+    
+    return null
   }
-  new(model: UserModel) {}
-  delete(id) {}
+  new(model: UserModel) {
+    this.db.query(`
+    INSERT INTO users (revolt_id, auto_proxy) values ( ?, ? )
+    `)
+      .run(model.revolt_id, model.autoProxy)
+  }
+  delete(id) {
+    this.db.query(`
+    DELETE *
+    FROM users
+    WHERE users.id=?
+    `).run(id)
+  }
 
   isProxyEnabled(id: number) {
+    if (id == null) { return false }
     const row: any = this.db.query(`
     SELECT auto_proxy
     FROM users
@@ -33,15 +48,41 @@ class UserRepo {
     return is_enabled
   }
 
-  getIdByRevoltId(revolt_id: string){
+  setProxyStatus(id: number, status: boolean) {
+    const string_status = status == true ? "TRUE" : "FALSE"
+    this.db.query("UPDATE users SET auto_proxy=? WHERE users.id=?").run(string_status, id)
+  }
+
+  getIdByRevoltId(revolt_id: string): number | null {
     const row: any = this.db.query(`
     SELECT id
     FROM users
     WHERE users.revolt_id=?  
     `).get(revolt_id)
     
-    const id: number = row.id
-    return id
+    if (row != null) {
+      const id: number = row.id
+      return id
+    }
+    return null
+  }
+
+  setSelectedAutoProxyId(id: number, user_id: number){
+    const query = this.db.query(`
+    UPDATE users
+    SET auto_proxy_member=?
+    WHERE users.id=?
+    `).run(id, user_id)
+  }
+
+  getSelectedAutoProxyIdByUserId(id: number) {
+    const row: any = this.db.query(`
+    SELECT auto_proxy_member
+    FROM users
+    WHERE users.id=?
+    `).get(id)
+    
+    return row.auto_proxy_member
   }
 }
 

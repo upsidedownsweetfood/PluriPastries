@@ -11,5 +11,8 @@ export function returnHelpText() {
     "- avatar <'Member's name'> <'picture url'> | Allows you to edit your Member's profile picture\n" +
     "- color <'Member's name'> <'color hex'> | Allows you to change the color of your Member ( may be integrated with the future website )\n"+
     "### Migrations\n"+
-    "- tupper < Json file attached > | Migrates your Member from tupper"
+    "- tupper < Json file attached > | Migrates your Member from tupper\n"
+    +"### Auto proxy\n"
+    +"- setAutoProxy <member name> | Sets the member to automatically send messages as\n"
+    +"- toggleAutoProxy | Enable or disable the autoproxy"
 }

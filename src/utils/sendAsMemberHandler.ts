@@ -5,8 +5,7 @@ import MemberModel from "../models/MemberModel"
 
 export default async function sendAsMember(message: Message, database: Database) {
   const memberRepo: MemberRepo = new MemberRepo(database);
-  let members: MemberModel[];
-  await memberRepo.getAltersByUserId(message.author.id).then(result => members = result);
+  let members: MemberModel[] = memberRepo.getAltersByUserId(message.author.id);
   
   members.forEach( async alter => {
     const pre_prefix = alter.prefix.split("text");
